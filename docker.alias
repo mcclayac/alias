@@ -9,6 +9,12 @@ alias drun="docker run "
 alias dstart="docker start "
 alias dstop="docker stop "
 alias dpull="docker pull "
+alias dexe="docker exec "
+alias dins="docker inspect "
+alias dlog="docker logs "
+alias dhis="docker history "
+
+
 
 
 
