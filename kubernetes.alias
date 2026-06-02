@@ -1,0 +1,11 @@
+#minikube
+alias mk="minikube "
+alias mstart="minikube start "
+alias mstop="mk stop"
+alias mdash
+
+
+#kubectl
+alias kt="kubectl "
+alias mkt="minikube kubectl -- "
+
