@@ -2,10 +2,30 @@
 alias mk="minikube "
 alias mstart="minikube start "
 alias mstop="mk stop"
-alias mdash
+alias mdash="minikube dashboard"
+alias mkstartvb3="minikube start --nodes=3 -p vbcluster3"
+alias mkvb3="minikube -p vbcluster3 "
+alias mkstopvb3="minikube stop -p vbcluster3"
+
 
 
 #kubectl
 alias kt="kubectl "
 alias mkt="minikube kubectl -- "
+alias ktrun="kubectl run "
+alias kpods="kubectl get pods"
+alias ktdry="kubectl --dry-run=client -o yaml "
+
+
+# 3109  minikube profile list
+# 3110  mq version
+# 3111  mk version
+# 3112  mk node list
+# 3113  mk node list -p vbcluster3
+# 3114  mk ip
+# 3115  mk -p vbcluster3 ip
+# 3116  mk -p vbcluster3 ip -n vbcluster3-m02
+
+
+
 
