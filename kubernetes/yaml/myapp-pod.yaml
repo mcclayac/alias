@@ -12,7 +12,7 @@ spec:
       image: nginx
       imagePullPolicy: IfNotPresent
       ports:
-        - name: myapp-pod
+        - name: nginx-container
           containerPort: 80
           protocol: TCP
   restartPolicy: Always
