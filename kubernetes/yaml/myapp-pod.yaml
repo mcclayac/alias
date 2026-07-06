@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+  labels:
+    role: myapp-pod
+    app: myapp
+    type: frontend
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+      imagePullPolicy: IfNotPresent
+      ports:
+        - name: myapp-pod
+          containerPort: 80
+          protocol: TCP
+  restartPolicy: Always
+  
