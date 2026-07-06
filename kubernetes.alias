@@ -34,10 +34,15 @@ aml > nginx-label.yaml
 # kt with container name
 kt run nginx-pod --image=nginx --overrides='{"spec":{"containers":[{"name":"nginx-container","image":"nginx"}]}}' --dry-run=client -o yaml > nginx-pod2.yaml
 
-#kt deployment
-kt create deployment nginx-deployment --image=nginx --port=80 --replicas=6 --dry-run=client -o yaml > nginx-deployment.yaml
+# kt edit replicaset
+kt edit replicaset nginx-replicaset
 
 # kt scale
-kt scale --replicas=12 rs nginx-replicaset
+kt scale replicaset nginx-replicaset --replicas=2
+
+# Create deployments
+kt create deployment nginx-deployment --image=nginx --port=80  --replicas=6 --dry-run=client -o yaml > nginx--deployment.yaml
+
+kt create deployment myapp-deployment --image=nginx --port=80  --replicas=6 --dry-run=client -o yaml > myapp-deployment.yaml
 
 
