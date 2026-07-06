@@ -37,4 +37,7 @@ kt run nginx-pod --image=nginx --overrides='{"spec":{"containers":[{"name":"ngin
 #kt deployment
 kt create deployment nginx-deployment --image=nginx --port=80 --replicas=6 --dry-run=client -o yaml > nginx-deployment.yaml
 
+# kt scale
+kt scale --replicas=12 rs nginx-replicaset
+
 
