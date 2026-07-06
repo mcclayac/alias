@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: frontend
+    env: prod
+    ses: web
+  name: nginx-label
+spec:
+  containers:
+  - image: nginx
+    name: nginx-label
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

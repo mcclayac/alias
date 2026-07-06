@@ -27,8 +27,14 @@ alias ktdry="kubectl --dry-run=client -o yaml "
 # 3116  mk -p vbcluster3 ip -n vbcluster3-m02
 
 
+# kt with label
+kt run nginx-label --image=nginx --labels="env=prod,app=frontend,ses=web" --dry-run=client -o y
+aml > nginx-label.yaml
+
+# kt with container name
 kt run nginx-pod --image=nginx --overrides='{"spec":{"containers":[{"name":"nginx-container","image":"nginx"}]}}' --dry-run=client -o yaml > nginx-pod2.yaml
 
+#kt deployment
 kt create deployment nginx-deployment --image=nginx --port=80 --replicas=6 --dry-run=client -o yaml > nginx-deployment.yaml
 
 
