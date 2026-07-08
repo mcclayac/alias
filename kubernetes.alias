@@ -63,6 +63,15 @@ kubectl create service nodeport my-service --tcp=80:8080 --dry-run=client -o yam
 #Create NodePort service from deployment
 kt expose deployment tonyapp-deploy --type=NodePort --port=3000 --target-port=3000 --name=tonyapp-deploy-nodeport-service --dry-run=client -o yaml > tonyapp-deploy-nodeport-service.yaml
 
+# update image of a pod / deployment
+$ kt set image pod/nginx-pod nginx-pod=nginx
+pod/nginx-pod image updated
+
+# Annotate the change
+kt annotate pod/nginx-pod kubernetes.io/change-cause="changed image to nginx"
+pod/nginx-pod annotated
+
+
 # Create ClusterIP Service from deployment
 kt expose deployment tonyapp-deploy --type=ClusterIP --name=tonyapp-deploy-clusterip-service --port=3000 --target-port=3000 --dry-run=client -o yaml > tonyapp-deploy-clusterip-service.yaml
 

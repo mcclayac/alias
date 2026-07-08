@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  labels:
+    app2: nginx-rs
+    app: webserver
+  annotations:
+    kubernetes.io/change-cause:  "Update nginx"
+  name: nginx-rs
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app2: nginx-rs
+      app: webserver
+  template:
+    metadata:
+      labels:
+        app2: nginx-rs
+        app: webserver
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        ports:
+        - containerPort: 80
+        resources: {}
+status: {}
