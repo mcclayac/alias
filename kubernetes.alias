@@ -45,4 +45,50 @@ kt create deployment nginx-deployment --image=nginx --port=80  --replicas=6 --dr
 
 kt create deployment myapp-deployment --image=nginx --port=80  --replicas=6 --dry-run=client -o yaml > myapp-deployment.yaml
 
+# History Annotations
+kubectl annotate deployment <deployment-name> kubernetes.io/change-cause="reason="Updated to image version 1.2.0"
+kt annotate deployment myapp-deployment kubernetes.io/change-cause="Changed sc
+ale from 6 to 12"
+
+
+# create Nodeport service
+kt expose deployment nginx-deployment --type=NodePort --port=80
+kubectl expose pod <POD_NAME> --type=NodePort --port=<SERVICE_PORT> --target-port=<POD_PORT> --name=<SERVICE_NAME>
+
+kubectl create service nodeport my-service --tcp=80:8080 --dry-run=client -o yaml > service.yaml
+
+# Create Service from pod
+» kt expose pod tonyapp --type=NodePort --port=3000 --target-port=3000 --name=tonyapp-service --dry-run=client -o yaml > tonyapp-service.yaml
+
+#Create NodePort service from deployment
+kt expose deployment tonyapp-deploy --type=NodePort --port=3000 --target-port=3000 --name=tonyapp-deploy-nodeport-service --dry-run=client -o yaml > tonyapp-deploy-nodeport-service.yaml
+
+# Create ClusterIP Service from deployment
+kt expose deployment tonyapp-deploy --type=ClusterIP --name=tonyapp-deploy-clusterip-service --port=3000 --target-port=3000 --dry-run=client -o yaml > tonyapp-deploy-clusterip-service.yaml
+
+
+ kt get svc
+NAME                               TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+kubernetes                         ClusterIP   10.96.0.1        <none>        443/TCP          33d
+tonyapp-deploy-clusterip-service   ClusterIP   10.101.78.136    <none>        3000/TCP         5s
+tonyapp-deploy-nodeport-service    NodePort    10.108.130.212   <none>        3000:31930/TCP   7h47m
+tonyapp-service                    NodePort    10.100.79.159    <none>        3000:30080/TCP   8h
+
+
+/app # cat curlTest.sh
+#!/bin/bash
+
+for loopvar in {1..200}
+do
+        echo loop : $loopvar
+        curl http://10.101.78.136:3000/hostname
+        echo "  "
+done
+
+
+# Expose Load BLANCER
+# see minikube tunnel
+kt expose deployment tonyapp-deploy --type=LoadBalancer --name=tonyapp-deploy-load-balancer-service --port=3000 --target-port=3000 --dry-run=client -o yaml > tonyapp-deploy-loadbalancer-service.yaml
+
+
 

@@ -3,3 +3,10 @@ kind:
 metadata:
 spec:
 
+containers:
+  - name: BusyBox-container
+    image: busybox
+    command:
+      - sh
+      - "-c"
+      - echo kubernetes! && sleep 3600

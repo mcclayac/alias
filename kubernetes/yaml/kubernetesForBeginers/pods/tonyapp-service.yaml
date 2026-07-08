@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: tonyapp
+  name: tonyapp-service
+spec:
+  ports:
+  - port: 3000
+    protocol: TCP
+    targetPort: 3000
+    nodePort: 30080
+  selector:
+    run: tonyapp
+  type: NodePort
+status:
+  loadBalancer: {}

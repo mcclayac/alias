@@ -19,7 +19,7 @@ spec:
         type: frontend
     spec:
       containers:
-      - image: nginx
+      - image: nginx:1.13
         name: nginx
         ports:
         - containerPort: 80
