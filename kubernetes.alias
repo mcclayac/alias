@@ -101,3 +101,7 @@ kt expose deployment tonyapp-deploy --type=LoadBalancer --name=tonyapp-deploy-lo
 
 
 
+#  Label nodes
+kt label nodes devcluster-m02 needsdaemon=true
+
+apply daemonSet with node label see daemonset.yaml
