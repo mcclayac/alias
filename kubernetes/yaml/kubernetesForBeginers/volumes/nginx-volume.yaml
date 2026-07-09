@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app2: nginx-volume
+  name: nginx-volume
+spec:
+  volumes:
+    - name: sharedspace
+      hostPath:
+        path: "/var/sharePodDir"
+  containers:
+  - image: nginx
+    name: nginx-volume
+    volumeMounts:
+      - mountPath: "containermount"
+        name: sharedspace
+    ports:
+      - containerPort: 80
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

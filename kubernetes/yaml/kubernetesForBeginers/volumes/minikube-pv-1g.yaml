@@ -1,12 +1,13 @@
 apiVersion: v1
+kind: PersistentVolume
 metadata:
   name: minikube-pv-1g
 spec:
-  capacity:
-    stoage: 1Gi
-  volumeMode: filesystem
-  accesModes:
+  accessModes:
     - ReadWriteOnce
-  persistentVolumeReclaimPolicy: retain
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  persistentVolumeReclaimPolicy: Retain
   hostPath:
     path: "/data/minikube-pv-1g"

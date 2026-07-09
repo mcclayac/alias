@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app2: nginx-pvc
+  name: nginx-pvc
+spec:
+  volumes:
+    - name: site-data
+      persistentVolumeClaim:
+        claimName: minikube-pvc-1g
+  containers:
+  - image: nginx
+    name: nginx-pvc
+    volumeMounts:
+      - mountPath: "/usr/share/nginx/html"
+        name: site-data
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
