@@ -1,0 +1,12 @@
+apiVersion: v1
+data:
+  customkey1: foo
+  customkey2: bar
+kind: ConfigMap
+metadata:
+  name: custom-config
+  namespace: default
+  labels:
+    app: frontend
+    env: dev
+    dev: mcclayac

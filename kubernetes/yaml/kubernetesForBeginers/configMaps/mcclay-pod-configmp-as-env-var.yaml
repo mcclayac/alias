@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    env: dev
+  name: mcclay-pod-cm-as-env-var
+spec:
+  volumes:
+    - name: mcclay-vol
+      configMap:
+        name: mcclay-cm
+  containers:
+  - image: nginx
+    name: mcclay-pod-cm-as-env-var
+    volumeMounts:
+      - mountPath: /app/config
+        name: mcclay-vol
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

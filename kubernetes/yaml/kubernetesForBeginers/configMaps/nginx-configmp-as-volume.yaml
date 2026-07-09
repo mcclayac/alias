@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    env: dev
+  name: nginx-configmp-as-volume
+spec:
+  volumes:
+    - name: nginx-configmp-volume
+      configMap:
+        name: custom-config
+  containers:
+  - image: nginx
+    name: nginx-configmp-as-volume
+    volumeMounts:
+      - mountPath: /etc/bt_config
+        name: nginx-configmp-volume
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

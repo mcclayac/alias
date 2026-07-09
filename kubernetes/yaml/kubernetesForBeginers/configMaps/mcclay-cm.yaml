@@ -1,0 +1,13 @@
+apiVersion: v1
+data:
+  mcclay.properties: |
+    firstname=tony
+    lastname=mcclay
+    address=1600 vincenes
+    email=anthony.mcclay@gmail.com
+    database = postgresql
+    db.password = helpme
+    db.schema = looser
+kind: ConfigMap
+metadata:
+  name: mcclay-cm
