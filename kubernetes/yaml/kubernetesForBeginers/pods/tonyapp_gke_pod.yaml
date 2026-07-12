@@ -6,10 +6,8 @@ metadata:
   name: tonyapp
 spec:
   containers:
-  - image: docker.io/mcclayac/tonyapp:v0.0.13
+  - image: us-central1-docker.pkg.dev/kube-administration/tonyregistry1/tonyapp:v0.0.15
     name: tonyapp
-    ports:
-      - containerPort: 3000
     resources: {}
   dnsPolicy: ClusterFirst
   restartPolicy: Always

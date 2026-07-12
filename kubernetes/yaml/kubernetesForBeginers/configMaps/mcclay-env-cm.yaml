@@ -1,0 +1,12 @@
+apiVersion: v1
+data:
+  address: 1600 vincenes
+  database: postgresql
+  db.password: helpme
+  db.schema: looser
+  email: anthony.mcclay@gmail.com
+  firstname: tony
+  lastname: mcclay
+kind: ConfigMap
+metadata:
+  name: mcclayenvcm

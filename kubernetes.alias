@@ -6,7 +6,8 @@ alias mdash="minikube dashboard"
 alias mkstartvb3="minikube start --nodes=3 -p vbcluster3"
 alias mkvb3="minikube -p vbcluster3 "
 alias mkstopvb3="minikube stop -p vbcluster3"
-
+alias mkusevb3="kt config use-context vbcluster3"
+alias mkusegke
 
 
 #kubectl
@@ -15,7 +16,9 @@ alias mkt="minikube kubectl -- "
 alias ktrun="kubectl run "
 alias kpods="kubectl get pods"
 alias ktdry="kubectl --dry-run=client -o yaml "
-
+alias kthello="kt config use-context gke_kube-administration_us-central1_hello-world-cluste"
+alias ktvb3="kt config use-context vbcluster3"
+alias knodes="kt get nodes -o wide"
 
 # 3109  minikube profile list
 # 3110  mq version
@@ -105,3 +108,12 @@ kt expose deployment tonyapp-deploy --type=LoadBalancer --name=tonyapp-deploy-lo
 kt label nodes devcluster-m02 needsdaemon=true
 
 apply daemonSet with node label see daemonset.yaml
+
+
+# Create configmap
+kt create configmap custom-config --from-literal=customkey1=foo --from-literal=customkey2=bar --dry-run=client -o yaml > custom-config.yaml
+
+# Create configmap with namespace
+kt create configmap custom-config --from-literal=customkey1=foo --from-literal=customkey2=bar --namespace=default --dry-run=client -o yaml > custom-config.yaml
+
+

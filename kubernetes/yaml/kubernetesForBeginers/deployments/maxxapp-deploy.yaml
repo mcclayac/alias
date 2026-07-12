@@ -2,23 +2,23 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: tonyapp-deploy
-  name: tonyapp-deploy
+    app: maxxapp-deploy
+  name: maxxapp-deploy
 spec:
-  replicas: 10 
+  replicas: 20
   selector:
     matchLabels:
-      app: tonyapp-deploy
+      app: maxxapp-deploy
   strategy: {}
   template:
     metadata:
       labels:
-        app: tonyapp-deploy
+        app: maxxapp-deploy
     spec:
       containers:
-      - image: mcclayac/tonyapp:v0.0.15
-        name: tonyapp
+      - image: mcclayac/maxxapp:v0.0.1
+        name: maxxapp
         ports:
-        - containerPort: 3000
+          - containerPort: 6000
         resources: {}
 status: {}

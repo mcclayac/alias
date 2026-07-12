@@ -2,14 +2,14 @@ apiVersion: v1
 kind: Pod
 metadata:
   labels:
-    run: tonyapp
-  name: tonyapp
+    run: maxxapp
+  name: maxxapp
 spec:
   containers:
-  - image: docker.io/mcclayac/tonyapp:v0.0.13
-    name: tonyapp
+  - image: mcclayac/maxxapp:v0.0.1
+    name: maxxapp
     ports:
-      - containerPort: 3000
+      - containerPort: 6000
     resources: {}
   dnsPolicy: ClusterFirst
   restartPolicy: Always

@@ -2,23 +2,23 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: tonyapp-deploy
-  name: tonyapp-deploy
+    app: coreyapp-deploy
+  name: coreyapp-deploy
 spec:
-  replicas: 10 
+  replicas: 20
   selector:
     matchLabels:
-      app: tonyapp-deploy
+      app: coreyapp-deploy
   strategy: {}
   template:
     metadata:
       labels:
-        app: tonyapp-deploy
+        app: coreyapp-deploy
     spec:
       containers:
-      - image: mcclayac/tonyapp:v0.0.15
-        name: tonyapp
+      - image: mcclayac/coreyapp:v0.0.1
+        name: coreyapp
         ports:
-        - containerPort: 3000
+          - containerPort: 4000
         resources: {}
 status: {}
