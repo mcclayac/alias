@@ -116,4 +116,18 @@ kt create configmap custom-config --from-literal=customkey1=foo --from-literal=c
 # Create configmap with namespace
 kt create configmap custom-config --from-literal=customkey1=foo --from-literal=customkey2=bar --namespace=default --dry-run=client -o yaml > custom-config.yaml
 
+# Change conext to namespace
+# to dev
+kt config set-context $(kubectl config current-context) --namespace=dev
+
+# to default
+kt config set-context $(kubectl config current-context) --namespace=default
+
+view pods in all namespaces
+kt get pods --all-namespaces
+
+# create quota
+kt create quota dev-quota --namespace=dev --hard=cpu=3,memory=10Gi,pods=20 --dry-run=client -o yaml > dev-quota.yaml
+https://kubernetes.io/docs/concepts/policy/resource-quotas/
+https://kubernetes.io/docs/reference/kubectl/generated/kubectl_create/kubectl_create_quota/
 

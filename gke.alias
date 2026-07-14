@@ -1,0 +1,27 @@
+
+
+# GKE Alias
+
+# Setup docker for GKE-repository
+gcloud auth configure-docker \
+    us-central1-docker.pkg.dev
+
+# From Google
+docker tag us-docker.pkg.dev/google-samples/containers/gke/hello-app:1.0 \
+us-west1-docker.pkg.dev/PROJECT/quickstart-docker-repo/quickstart-image:tag1
+
+docker tag tonyapp:v0.0.14 \
+us-central-docker.pkg.dev/kube-administration/tonyregistry1/tonyapp:v0.0.14
+
+us-central1-docker.pkg.dev/kube-administration/tonyregistry1/tonyapp:v0.0.14
+
+docker tag tonyapp:v0.0.15 us-central1-docker.pkg.dev/kube-administration/tonyregistry1/tonyapp:v0.0.15
+
+
+# Docker push
+docker push us-central-docker.pkg.dev/kube-administration/tonyregistry1/tonyapp:v0.0.14
+
+docker push us-central1-docker.pkg.dev/kube-administration/tonyregistry1/tonyapp:v0.0.14
+
+docker push us-central1-docker.pkg.dev/kube-administration/tonyregistry1/tonyapp:v0.0.15
+

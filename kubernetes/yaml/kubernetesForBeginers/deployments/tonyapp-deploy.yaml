@@ -5,7 +5,7 @@ metadata:
     app: tonyapp-deploy
   name: tonyapp-deploy
 spec:
-  replicas: 10 
+  replicas: 1
   selector:
     matchLabels:
       app: tonyapp-deploy
@@ -16,8 +16,13 @@ spec:
         app: tonyapp-deploy
     spec:
       containers:
-      - image: mcclayac/tonyapp:v0.0.15
+      - image: mcclayac/tonyapp:v0.0.19
         name: tonyapp
+        env:
+          - name: MS_URL
+            value: coreyapp-deploy-lb-svc
+          - name: MS_PORT
+            value: "4000"
         ports:
         - containerPort: 3000
         resources: {}
