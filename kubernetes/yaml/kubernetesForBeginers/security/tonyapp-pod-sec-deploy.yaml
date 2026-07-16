@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: tonyapp-pod-sec-deploy
+  name: tonyapp-pod-sec-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tonyapp-pod-sec-deploy
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: tonyapp-pod-sec-deploy
+    spec:
+      securityContext:
+        runAsUser: 1000
+      containers:
+      - image: mcclayac/tonyapp:v0.0.19
+        name: tonyapp-pod-sec
+        env:
+          - name: MS_URL
+            value: coreyapp-deploy-lb-svc
+          - name: MS_PORT
+            value: "4000"
+        ports:
+        - containerPort: 3000
+        resources: {}
+status: {}
