@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  app-config.properties: |2-
+
+    APP_COLOR2=red
+    APP_MOD2=prod2
+    DEVELOPER=mcclayac
+kind: ConfigMap
+metadata:
+  name: app-config-prop

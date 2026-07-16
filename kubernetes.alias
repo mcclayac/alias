@@ -131,3 +131,27 @@ kt create quota dev-quota --namespace=dev --hard=cpu=3,memory=10Gi,pods=20 --dry
 https://kubernetes.io/docs/concepts/policy/resource-quotas/
 https://kubernetes.io/docs/reference/kubectl/generated/kubectl_create/kubectl_create_quota/
 
+# Create configmap
+kt create configmap app-config-prop --from-file=app-config.properties --dry-run=client -o yaml > app-config-prop.yaml
+
+# Encode secrets base64
+echo -n 'tonymcclay' | base64
+dG9ueW1jY2xheQ==
+
+# Decode secrets base64
+echo -n 'dG9ueW1jY2xheQ==' | base64 --decode
+tonymcclay
+
+
+kubectl -n kube-system exec -it etcd-minikube -- sh -c "
+ETCDCTL_API=3 ETCDCTL_CACERT=/var/lib/minikube/certs/etcd/ca.crt \
+ETCDCTL_CERT=/var/lib/minikube/certs/etcd/server.crt \
+ETCDCTL_KEY=/var/lib/minikube/certs/etcd/server.key \
+etcdctl endpoint health"
+
+kubectl -n kube-system exec -it etcd-vbcluster3 -- sh -c "
+ETCDCTL_API=3 ETCDCTL_CACERT=/var/lib/minikube/certs/etcd/ca.crt \
+ETCDCTL_CERT=/var/lib/minikube/certs/etcd/server.crt \
+ETCDCTL_KEY=/var/lib/minikube/certs/etcd/server.key \
+etcdctl endpoint health"
+
