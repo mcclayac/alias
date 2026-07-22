@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: maxxapp-node-affin-deploy
+  name: maxxapp-node-affin-deploy
+spec:
+  replicas: 20
+  selector:
+    matchLabels:
+      app: maxxapp-node-affin-deploy
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: maxxapp-node-affin-deploy
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: size
+                operator: In
+                values:
+                - large
+      containers:
+      - image: mcclayac/maxxapp:v0.0.1
+        name: maxxapp
+        ports:
+          - containerPort: 6000
+        resources: {}
+status: {}

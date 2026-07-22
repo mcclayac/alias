@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: tonyapp-delay-ready-deploy
+  name: tonyapp-delay-ready-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tonyapp-delay-ready-deploy
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: tonyapp-delay-ready-deploy
+    spec:
+      containers:
+      -  name: tonyapp-delay
+         image: docker.io/mcclayac/tonyapp-delay:v002
+         env:
+          - name: MS_URL
+            value: coreyapp-deploy-lb-svc
+          - name: MS_PORT
+            value: "4000"
+         ports:
+         - containerPort: 3000
+         readinessProbe:
+           initialDelaySeconds: 10
+           periodSeconds: 5
+           httpGet:
+             path: /health
+             port: 3000
+         resources: {}
+status: {}

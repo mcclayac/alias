@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: tonyapp-delay
+  name: tonyapp-delay
+spec:
+  containers:
+  - image: docker.io/mcclayac/tonyapp-delay:v002
+    name: tonyapp-delay
+    ports:
+      - containerPort: 3000
+      - name: readiness-port
+        containerPort: 3000
+    readinessProbe:
+      initialDelaySeconds: 5
+      periodSeconds: 5
+      failureThreshold: 3
+      httpGet:
+        port: readiness-port
+        path: /healthz
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: maxxapp-node-sel-deploy
+  name: maxxapp-node-sel-deploy
+spec:
+  replicas: 20
+  selector:
+    matchLabels:
+      app: maxxapp-node-sel-deploy
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: maxxapp-node-sel-deploy
+    spec:
+      nodeSelector:
+        size: large
+      containers:
+      - image: mcclayac/maxxapp:v0.0.1
+        name: maxxapp
+        ports:
+          - containerPort: 6000
+        resources: {}
+status: {}

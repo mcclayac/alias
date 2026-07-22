@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: tonyapp-side-car-deploy
+  name: tonyapp-side-car-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tonyapp-side-car-deploy
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: tonyapp-side-car-deploy
+    spec:
+      containers:
+      - image: mcclayac/tonyapp:v0.0.19
+        name: tonyapp
+        env:
+          - name: MS_URL
+            value: coreyapp-deploy-lb-svc
+          - name: MS_PORT
+            value: "4000"
+        ports:
+        - containerPort: 3000
+      - image: nginx
+        name: nginx-sidecar
+        ports:
+        - containerPort: 80
+        resources: {}
+status: {}

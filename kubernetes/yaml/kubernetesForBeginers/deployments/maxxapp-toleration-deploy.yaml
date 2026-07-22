@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: maxxapp-tol-deploy
+  name: maxxapp-tol-deploy
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: maxxapp-tol-deploy
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: maxxapp-tol-deploy
+    spec:
+      tolerations:
+        - key: "app"
+          operator: "Equal"
+          value: "blue"
+          effect: "NoSchedule"      
+      containers:
+      - image: mcclayac/maxxapp:v0.0.1
+        name: maxxapp
+        ports:
+          - containerPort: 6000
+        resources: {}
+status: {}

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: tonyapp-resource-request-deploy
+  name: tonyapp-resource-request-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tonyapp-resource-request-deploy
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: tonyapp-resource-request-deploy
+    spec:
+      containers:
+      - image: mcclayac/tonyapp:v0.0.19
+        name: tonyapp
+        env:
+          - name: MS_URL
+            value: coreyapp-deploy-lb-svc
+          - name: MS_PORT
+            value: "4000"
+        ports:
+        - containerPort: 3000
+        resources:
+          requests:
+            cpu: 2
+            memory: 128Mi
+status: {}
